@@ -15,7 +15,7 @@ Mise en place de modèles de type Deep Learning pour la reconnaissance d'image, 
 
 
 ### Les bases du Scraping.
-### Architecture RabitMQ pour tâches distribuées.
+### Architecture RabitMQ pour tâches distribuées (appliquée au Scraping/Crawling).
 ### Mise en place d'un moteur de recherche avec Elastic Search et Docker
 
 
