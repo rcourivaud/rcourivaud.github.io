@@ -2,7 +2,7 @@
 
 ## [Data Science](https://rcourivaud.github.io/datascience)
 
-### [IMDB](https://rcourivaud.github.io/articles/IMDB+Movies.html)
+### [IMDB](https://rcourivaud.github.io/articles/IMDB/IMDB Movies)
 
 Quelques annalyses de bases sur une dataset de 5000 films de la base d'IMDB. 
 
