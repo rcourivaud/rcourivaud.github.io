@@ -4,5 +4,5 @@
 
 
 
-## Python 
+## [Python Tricks](https://rcourivaud.github.io/pythontricks)
 
