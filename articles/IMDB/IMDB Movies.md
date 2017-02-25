@@ -228,7 +228,7 @@ ax.axvline(movies.imdb_score.mean())
 
 
 
-    <matplotlib.lines.Line2D at 0x18eed4d0550>
+    <matplotlib.lines.Line2D at 0x18eef8cfcf8>
 
 
 
@@ -259,7 +259,7 @@ sns.lmplot(x="title_year", y="imdb_score", data=df_mean_by_year)
 
 
 
-    <seaborn.axisgrid.FacetGrid at 0x18eed486e10>
+    <seaborn.axisgrid.FacetGrid at 0x18eef8d5978>
 
 
 
@@ -286,34 +286,16 @@ movies.groupby("title_year").agg({"count":"count"}).plot()
 ![png](output_14_1.png)
 
 
-
-```python
 Mais le nombre de film à lui aussi très largement augmenté. 
-```
-
-
-      File "<ipython-input-40-b9f860e33cf6>", line 1
-        Mais le nombre de film à lui aussi très largement augmenté.
-              ^
-    SyntaxError: invalid syntax
-    
-
 
 
 ```python
 df_max_by_year = movies.groupby("title_year", as_index=False).agg("max")
-sns.lmplot(x="title_year", y="imdb_score", data=df_mean_by_year)
+sns.lmplot(x="title_year", y="imdb_score", data=df_max_by_year);
 ```
 
 
-
-
-    <seaborn.axisgrid.FacetGrid at 0x18eebf02b70>
-
-
-
-
-![png](output_16_1.png)
+![png](output_16_0.png)
 
 
 Mais les notes maximum attribuées sont légerement en hause. Mais quels sont les films les mieux notés de ces 100 dernières années ?
