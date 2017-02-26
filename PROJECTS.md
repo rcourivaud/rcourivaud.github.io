@@ -2,7 +2,7 @@
 
 ## [Stage Data Scientist : Data Publica](https://rcourivaud.github.io/docs/rapportdatapublica.pdf)
 
-## [New Bet Assistant] (https://rcourivaud.github.io/docs/NEW_BET_ASSISTANT_RAPPORT.pdf)
+## [New Bet Assistant](https://rcourivaud.github.io/docs/NEW_BET_ASSISTANT_RAPPORT.pdf)
 
 Mise en place d'une infrastructure permettant la prédiction temps réel des rencontres sportives (appliqué à la NBA)
 
