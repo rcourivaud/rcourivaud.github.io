@@ -25,7 +25,7 @@ import pandas as pd
 requests_cache.install_cache("bases_scraping", expire_after=10e5)
 ```
 
-![Image](./img/sqlite.PNG)
+![png](sqlite.PNG)
 
 Il faut faire très attention avec le cache, il peut être source d'erreurs et peut prendre énormément de place lorsque l'ont scrap un grand nombre de pages. Il peut atteindre très facilement plusieurs centaines de Go. Le fait d'installer un cache permet de créer une base sqlite en local, avec les pages matcher sur les urls. Lorsque l'on refait la même requête il ira chercher directement dans la base locale. 
 
@@ -107,13 +107,13 @@ soup.h1.text.replace("\n", "")
 
 
 
-![Image](./img/header.png)
+![png](header.png)
 
 Si on veut maintenant récupérer toutes les annonces avec leur prix il faut se pencher plus en détails sur la structure HTML de la page. Pour cela on peut ouvrir l'inspecteur du navigateur (Chrome de préférence) avec F12 ou Ctrl + Maj + I. Qui permet de naviguer dans le HTML très facilement. 
 
 Pour récupérer les informations il va falloir retrouver les balises qui contiennent les données. Pour cela il est important de partir des balises les plus englobantes (balises parentes) jusqu'au balises filles que l'on veut. Pour cela, il faut récupérer le nom des identifiants de ces dernières. On sait qu'il existe de nombreux types d'identifiants (id, class, etc.). Seulement les seuls identifiants uniques sont les id. Les class peuvent être nombreuses. Si vous devez privilégié un identifiant préférez les ids. 
 
-![Image](./img/cap1.png)
+![png](cap1.png)
 
 Ici on voit que la list des annonces est comprise dans la section id="listingAds" et ensuite dans la class="tabsContent. Pour récupérer cette div fille c'est très facile l'objet soup créé possède des méthodes permettant de parser facilement la page.
 
@@ -132,7 +132,7 @@ str(div_fille)[0:1000]
 
 Les balises ul et li permettent de créer des listes. On peut alors récupérer toutes les annonces comme ceci...
 
-![Image](./img/liste.png)
+![png](liste.png)
 
 
 ```python
