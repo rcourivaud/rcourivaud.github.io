@@ -4,12 +4,7 @@ Cancer du Poumon
 GitHub Documents
 ----------------
 
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
-
-Including Code
---------------
-
-You can include R code in the document as follows:
+Cette étude mets en place une ACP permettant de faire quelques analyses sur une étude médicale sur le cancer du poumon.
 
 ``` r
 library(FactoMineR)
@@ -24,6 +19,8 @@ source("ACP_TOOLS.R")
 Formatage de la dataframe
 -------------------------
 
+Après quelques annalyses différents individu on des données incohérentes. On supprime alors à la main les lignes outliers. Ces erreurs sont surement dues à l'erreur humaine durant le remplissage de l'étude médicale.
+
 ``` r
 df<-read.table(file,header = TRUE)
 df <- df[-c(106, 70,75, 118, 12, 95),]
@@ -31,6 +28,8 @@ df <- df[-c(106, 70,75, 118, 12, 95),]
 
 Statistiques générales
 ----------------------
+
+Pour commencer réalisons quelques statistiques générales pour comprendre les données.
 
 ``` r
 va.num<-which(sapply(df,is.numeric))
@@ -44,8 +43,10 @@ nb.ind <- dim(df.num)[1]
 
 # box plot des variables numériques
 df.num.scale <-apply(df.num,2,scale) 
-PROC_BOXPLOTALL(df.num.scale, p = c(1,1), main.name = 'donnees standardisees')
+boxplot(df.num.scale)
 ```
+
+![](Render_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 Statistiques univariées
 -----------------------
@@ -78,7 +79,7 @@ pairs(df.num)
 
 ![](Render_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
-![](Render_files/figure-markdown_github/pressure-1.png)
+![](Render_files/figure-markdown_github/pressure-1.png) On voit ici une légère corrélation entre le K\_score et le taux de survie.
 
 ``` r
 corrplot(mat.cor, method="shade", shade.col=NA, tl.col="black", tl.srt=45,col=col(200), addCoef.col="black", order="AOE")
@@ -86,19 +87,20 @@ corrplot(mat.cor, method="shade", shade.col=NA, tl.col="black", tl.srt=45,col=co
 
 ![](Render_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
-ACP
-===
+On souhaite alors réaliser une PCA pour trouver une représentation à dimension plus faible. \# ACP
 
 ``` r
 pca<-PCA(df.num, graph = FALSE)
 ```
 
+L'inertie de la PCA permet de voir combien de quantité d'information est perdue enfonction du nombre d'axes choisi. Ici on voit bien que lorsque l'on choisi autant d'axes que de variables, aucune PCA n'est donc mise en place on ne perd aucune information.
+
 Innertie
 --------
 
 ``` r
-inertie<-matrix(c(seq(1,length(va.num),1),pca$eig[,3]),ncol = 2) ; colnames(inertie)<-c('axe','% inertie cumul?e')
-plot(inertie[,2]~inertie[,1],type = 'b',xlab='axe',ylab='% inertie cumul?e')
+inertie<-matrix(c(seq(1,length(va.num),1),pca$eig[,3]),ncol = 2) ; colnames(inertie)<-c('axe','% inertie cumulée')
+plot(inertie[,2]~inertie[,1],type = 'b',xlab='axe',ylab='% inertie cumulée')
 ```
 
 ![](Render_files/figure-markdown_github/unnamed-chunk-9-1.png)
@@ -119,8 +121,7 @@ Icp<-pca$eig[,1]*exp(+1.96*sqrt(2/(nb.ind-1)))
 axe.anderson<-as.matrix(cbind(Icm,pca$eig[,1],Icp),ncol = 3)
 ```
 
-Boostrap total sur les axes
-===========================
+On souhaite réaliser un bootstrap sur notre jeu de données pour trouver la PCA la plus cohérente sur les données. Le bootstrap est très intéressant lorsque le jeu de données est si faible. Il permet de créer un faux jeu de données aléatoire en fonction des données de base. \#Boostrap total sur les axes
 
 ``` r
 B = 2000 ; alpha = 0.1 ; nb.axe <-4
@@ -180,6 +181,8 @@ pca.var.qlt<-pca$var$cos2[,c(1,2)]
 pca.var.qlt<-cbind(pca.var.qlt,(apply(pca.var.qlt,1,sum))) ;
 colnames(pca.var.qlt)[3]<-'Sum qtl'
 ```
+
+On voit ici la représentation des 4 variable sur les différents axes crés par la PCA. On voit, comme avec notre premieère intuition qu'on trouve une représentation du taux de survie avec ke K\_score ce qui permet de créer une nouvelle variable à partir de ces deux nouvelles variables.
 
 INDIVIDUS ET CONTRIBUTION RELATIVE
 ----------------------------------
