@@ -2,8 +2,7 @@
 
 ## MAchine learning et Architecture
 
-### [Hand Written Recognition Digits](https://rcourivaud.github.io/articles/FlaskSklearn/FlaskSklearn)
-## [Comment utiliser un modèle via une API ?]
+### [Comment utiliser un modèle via une API ?](https://rcourivaud.github.io/articles/FlaskSklearn/FlaskSklearn)
 
 ## Etudes de cas
 
