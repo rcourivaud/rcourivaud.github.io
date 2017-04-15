@@ -19,7 +19,11 @@ Dans certain cas, cela est plus facile que d'autres, mais en règles générales
 
 ## Machine learning et Architecture
 
-### [Comment utiliser un modèle via une API ?](https://rcourivaud.github.io/articles/FlaskSklearn/FlaskSklearn)
+### [Comment utiliser un modèle via une API REST ?](https://rcourivaud.github.io/articles/FlaskSklearn/FlaskSklearn)  
+
+Pour mettre en production des modèles vous pouvez utilisez ce package python https://github.com/rcourivaud/predictors_api
+
+### [Comment déployer une API REST avec Docker ?](https://rcourivaud.github.io/articles/FlaskSklearn/FlaskDocker)  
 
 ## Etudes de cas
 
@@ -27,9 +31,7 @@ Dans certain cas, cela est plus facile que d'autres, mais en règles générales
 
 Mise en place de modèles de type Deep Learning pour la reconnaissance d'image, appliqués à la détections de chiffres manuscrits.
 
-
 ### [Cancer du Sein](https://rcourivaud.github.io/articles/CancerduSein/CancerduSein)
-
 
 ### [Analyses Cancer du Poumon](https://rcourivaud.github.io/articles/Poumon/Poumon)
 
