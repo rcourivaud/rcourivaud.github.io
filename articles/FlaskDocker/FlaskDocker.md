@@ -1,15 +1,15 @@
 
-# Introduction a Docker 
+# Introduction a Docker
 
 Pour commencer Docker est un sytème de virtualisation un peu comme les Virtual Machines qui utilise des conteneur. Chaque conteneur est complètement indépendant et possède sa propre architecture, arborescences, etc...
 
-La différence majeure et celle qui fait que Docker est de plus en plus utilisé aujourd'hui est qu'il permet de partager entre ses conteneurs un unique noyaux et donc d'uniques dépendances. Cela permet une grande vitesse de mise en place de conteneur de mêmes types. 
+La différence majeure et celle qui fait que Docker est de plus en plus utilisé aujourd'hui est qu'il permet de partager entre ses conteneurs un unique noyaux et donc d'uniques dépendances. Cela permet une grande vitesse de mise en place de conteneur de mêmes types.
 
 Docker permet de virtualiser des clusters Cassandra ou Elastic Search, des bases MongoDB ou MySQL, des serveur Apache et ce qui va nous intéresser ce sont des applications Python.
 
-# Docker et Flask 
+# Docker et Flask
 
-Pour des soucis de mise en production on peut vouloir intégrer l'API Flask mise en place dans l'article précédent dans un conteneur Docker. Pour cela il faut récupérer les fichiers api.py et le modèle créé. 
+Pour des soucis de mise en production on peut vouloir intégrer l'API Flask mise en place dans l'article précédent dans un conteneur Docker. Pour cela il faut récupérer les fichiers api.py et le modèle créé.
 
 
 ```python
@@ -32,7 +32,7 @@ cd docker_build/
 ```
 
     C:\Users\rcour\work\Blog Articles\FlaskDocker\docker_build
-    
+
 
 Il faut maintenant créer un fichier de dépendances ```requirements.txt``` pour les installer via pip.
 
@@ -47,7 +47,7 @@ numpy==1.11.1
 ## DockerFile
 
 Et un Dockerfile...  
-Le dockerfile permet d'indiquer les étapes de la constitution de l'image docker et donc de l'instanciation d'un conteneur. 
+Le dockerfile permet d'indiquer les étapes de la constitution de l'image docker et donc de l'instanciation d'un conteneur.
 
 ```
 FROM python:3
@@ -63,7 +63,7 @@ ENTRYPOINT ["python"]
 CMD ["api.py"]
 ```
 
-Revenons sur chaque ligne une par une : 
+Revenons sur chaque ligne une par une :
 
 `FROM ..`
 
@@ -83,7 +83,7 @@ exécute une commande bash. Dans notre cas on veut que sur la distribution pytho
 
 `ENTRYPOINT ..`  
 
-permet de définir un conteneur comme un exécutable. Ici notre application utilisera python. 
+permet de définir un conteneur comme un exécutable. Ici notre application utilisera python.
 
 `CMD .. `  
 
@@ -91,18 +91,16 @@ est la commande appelé à l'instantiation du conteneur. Ici comme nous avons d�
 Nous arions très bien pu ne pas définir d'ENTRYPOINT mais une commande CMD ["python" , "api.py"]
 
 
+## Build l'image docker
 
-
-## Build l'image docker 
-
-Il faut maintenant lancer la build de l'image docker qui permettra d'instancier le conteneur. Pour cela il faut lancer la commande suivante dans le dossier du DockerFile sans oublier le point. 
+Il faut maintenant lancer la build de l'image docker qui permettra d'instancier le conteneur. Pour cela il faut lancer la commande suivante dans le dossier du DockerFile sans oublier le point.
 
 
 ```python
 !docker build --no-cache -t flask-iris-predictor .
 ```
 
-Cela peut prendre un peu de temps puisqu'il doit télécharger toutes les librairies défini par le FROM donc toutes les dépendances de python3 et toutes celles que nous avons rajouté avec le fichier requirements.txt. Lorsque cela sera fait les instanciations des conteneurs se fera presque instantanément. 
+Cela peut prendre un peu de temps puisqu'il doit télécharger toutes les librairies défini par le FROM donc toutes les dépendances de python3 et toutes celles que nous avons rajouté avec le fichier requirements.txt. Lorsque cela sera fait les instanciations des conteneurs se fera presque instantanément.
 
 
 ![Building Docker Image..](building.PNG)
@@ -120,7 +118,7 @@ Les conteneurs sont instanciés sur une docker machine qui possède sa propre IP
 
 ## Tests
 
-Pour tester on peut utiliser PostMan qui permet de faire des requêtes HTTP très facilement. On utilise la route de l'API permettant de prédire le type de fleur et on lui fourni un JSON comportant les données que l'on veut tester. 
+Pour tester on peut utiliser PostMan qui permet de faire des requêtes HTTP très facilement. On utilise la route de l'API permettant de prédire le type de fleur et on lui fourni un JSON comportant les données que l'on veut tester.
 ![Postman's tests](model_test.PNG)
 
 Voila l'API REST est prête à être utilisée depuis une architecture Docker.

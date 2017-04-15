@@ -23,7 +23,7 @@ Dans certain cas, cela est plus facile que d'autres, mais en règles générales
 
 Pour mettre en production des modèles vous pouvez utilisez ce package python https://github.com/rcourivaud/predictors_api
 
-### [Comment déployer une API REST avec Docker ?](https://rcourivaud.github.io/articles/FlaskSklearn/FlaskDocker)  
+### [Comment déployer une API REST avec Docker ?](https://rcourivaud.github.io/articles/FlaskDocker/FlaskDocker)  
 
 ## Etudes de cas
 
