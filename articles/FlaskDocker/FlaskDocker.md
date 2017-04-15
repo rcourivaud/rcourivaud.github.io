@@ -123,4 +123,4 @@ Les conteneurs sont instanciés sur une docker machine qui possède sa propre IP
 Pour tester on peut utiliser PostMan qui permet de faire des requêtes HTTP très facilement. On utilise la route de l'API permettant de prédire le type de fleur et on lui fourni un JSON comportant les données que l'on veut tester. 
 ![Postman's tests](model_test.PNG)
 
-Voila l'API REST est prête à être utilisée depuis une architecture Docker. Vous pouvez trouver les fichiers sources ici https://rcourivaud.github.io/articles/FlaskDocker/docker_build
+Voila l'API REST est prête à être utilisée depuis une architecture Docker.
